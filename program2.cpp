@@ -66,32 +66,21 @@ int main(int argc, char* argv[]) {
   useconds = end.tv_usec - start.tv_usec;
   mtime = ((seconds) * 1000 + useconds/1000.0) + 0.5;
 
-  cout << "Sequence 1: ";
-  int lcsIndex = 0;
-  for(int i = 1; i <= m; i++) {
-    if(sequence[0][i] == ret[lcsIndex]) {
-      cout << "\033[32m" << sequence[0][i] << "\033[0m";
-      lcsIndex++;
-    } else {
-      cout << "\033[33m" << sequence[0][i] << "\033[0m";
+  for(int seqId = 0; seqId < 2; seqId++) {
+    cout << "Sequence "<< seqId+1 << ":" << endl;
+    int lcsIndex = 0;
+    for(int i = 1; i <= m; i++) {
+      if(sequence[seqId][i] == ret[lcsIndex]) {
+        cout << "\033[32m" << sequence[seqId][i] << "\033[0m";
+        lcsIndex++;
+      } else {
+        cout << "\033[33m" << sequence[seqId][i] << "\033[0m";
+      }
     }
+    cout << endl << endl;
   }
-  cout << endl << endl;
 
-  cout << "Sequence 2: ";
-  lcsIndex = 0;
-  for(int i = 1; i <= m; i++) {
-    if(sequence[1][i] == ret[lcsIndex]) {
-      cout << "\033[32m" << sequence[1][i] << "\033[0m";
-      lcsIndex++;
-    } else {
-      cout << "\033[33m" << sequence[1][i] << "\033[0m";
-    }
-  }
-  cout << endl << endl;
-
-  //cout << "Sequence 2: \n\033[33m" << sequence[1]+1 << "\033[0m" << endl << endl;
-  cout << "LCS: \n\033[33m" << ret << "\033[0m\nwith length \033[32m" << length << "\033[0m." << endl;
+  cout << "LCS: \n\033[32m" << ret << "\033[0m\nThe LCS has length \033[32m" << length << "\033[0m." << endl;
 
   cout << "Algorithm took \033[32m~" << mtime << "ms\033[0m.\n";
 
@@ -216,9 +205,10 @@ char** readFile(char* fname, int& m, int& n) {
     }
     sequence = new char*[2];
     sequence[0] = new char[m+2];
+    while (in.peek()!='\n') {
+      in.get();
+    }
     sequence[1] = new char[n+2];
-    sequence[0][0] = '_';
-    sequence[1][0] = '_';
     in.get();
     in.get(sequence[0] + 1, m+1);
     in.get();

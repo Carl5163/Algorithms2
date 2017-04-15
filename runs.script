@@ -1,0 +1,21 @@
+#!/bin/bash
+./program2 100.txt -b
+./program2 100.txt -t
+./program2 200.txt -b
+./program2 200.txt -t
+./program2 300.txt -b
+./program2 300.txt -t
+./program2 400.txt -b
+./program2 400.txt -t
+./program2 500.txt -b
+./program2 500.txt -t
+./program2 600.txt -b
+./program2 600.txt -t
+./program2 700.txt -b
+./program2 700.txt -t
+./program2 800.txt -b
+./program2 800.txt -t
+./program2 900.txt -b
+./program2 900.txt -t
+./program2 1000.txt -b
+./program2 1000.txt -t
